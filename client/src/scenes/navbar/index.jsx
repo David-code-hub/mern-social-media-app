@@ -46,7 +46,7 @@ const NavBar = () => {
       <FlexBetween gap="1.75rem">
         <Typography
           fontweight="bold"
-          fontSize="clamp(1rem, 2rem, 2.25rem)"
+          fontSize="clamp(1rem, 1.7rem, 2rem)"
           color="primary"
           onClick={() => navigate("/home")}
           sx={{
