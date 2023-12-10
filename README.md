@@ -1,4 +1,4 @@
-## React Social Media App 👍
+## React Social Media App 🚀
 
 _Social media app using MERN stack._
 
