@@ -30,8 +30,8 @@ const AdvertWidget = () => {
         <Typography color={main}>naturesfriend.org</Typography>
       </FlexBetween>
       <Typography color={medium} m="0.5rem 0">
-        Discover the beauty of nature and all it has to offer at our amazing
-        organization. We strive to promote global awareness about nature.
+        Discover the beauty of nature and all it has to offer at Nature's
+        friend. We strive to promote global awareness about nature.
       </Typography>
     </WidgetWrapper>
   );
