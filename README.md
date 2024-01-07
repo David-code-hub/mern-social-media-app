@@ -4,9 +4,10 @@
 
 ### Features not added,yet
 
-- error handling
-- notifications
-- edit user profile
-- search functionality
+- [ ] error handling
+- [ ] notifications
+- [ ] edit user profile
+- [ ] search functionality
+
 
 [Link to tutorial by EdRoh](https://youtu.be/K8YELRmUb5o?si=QOocp4hvtX6lVWcE)
