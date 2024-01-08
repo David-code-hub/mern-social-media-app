@@ -130,11 +130,17 @@ const Form = () => {
         <form onSubmit={handleSubmit}>
           {loggedIn && (
             <Alert
-              severity={loggedIn.status === 400 ? "error" : "warning"}
+              severity={
+                loggedIn.status === 400 || loggedIn.status === 500
+                  ? "error"
+                  : "warning"
+              }
               sx={{ my: "0.5rem" }}
             >
               <AlertTitle>
-                {loggedIn.status === 400 ? "Error" : "Warning"}
+                {loggedIn.status === 400 || loggedIn.status === 500
+                  ? "Error"
+                  : "Warning"}
               </AlertTitle>
               {loggedIn.msg}
             </Alert>
