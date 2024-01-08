@@ -6,6 +6,8 @@ import {
   useMediaQuery,
   Typography,
   useTheme,
+  Alert,
+  AlertTitle,
 } from "@mui/material";
 import EditOutlinedIcon from "@mui/icons-material/EditOutlined";
 import { Formik } from "formik";
@@ -48,6 +50,9 @@ const initialValuesLogin = {
 
 const Form = () => {
   const [pageType, setPageType] = useState("login");
+  const [loading, setLoading] = useState(false);
+  const [loggedIn, setLoggedIn] = useState();
+
   const { palette } = useTheme();
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -56,6 +61,7 @@ const Form = () => {
   const isRegister = pageType === "register";
 
   const register = async (values, onSubmitProps) => {
+    setLoading(true);
     // this allows us to send form info with image
     const formData = new FormData();
     for (let value in values) {
@@ -70,23 +76,26 @@ const Form = () => {
         body: formData,
       }
     );
-    const savedUser = await savedUserResponse.json();
+    setLoggedIn(await savedUserResponse.json());
     onSubmitProps.resetForm();
-
-    if (savedUser) {
+    setLoading(false);
+    if (loggedIn) {
       setPageType("login");
     }
   };
 
   const login = async (values, onSubmitProps) => {
+    setLoading(true);
     const loggedInResponse = await fetch("http://localhost:3001/auth/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(values),
     });
-    const loggedIn = await loggedInResponse.json();
-    onSubmitProps.resetForm();
+    setLoggedIn(await loggedInResponse.json());
+    setLoading(false);
+    console.log("logged in resp", loggedIn);
     if (loggedIn) {
+      // onSubmitProps.resetForm();
       dispatch(
         setLogin({
           user: loggedIn.user,
@@ -97,7 +106,7 @@ const Form = () => {
     }
   };
 
-  const handleFormSubmit = async (values, onSubmitProps) => {
+  const handleFormSubmit = async (values, onSubmitProps, e) => {
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
@@ -119,6 +128,17 @@ const Form = () => {
         resetForm,
       }) => (
         <form onSubmit={handleSubmit}>
+          {loggedIn && (
+            <Alert
+              severity={loggedIn.status === 400 ? "error" : "warning"}
+              sx={{ my: "0.5rem" }}
+            >
+              <AlertTitle>
+                {loggedIn.status === 400 ? "Error" : "Warning"}
+              </AlertTitle>
+              {loggedIn.msg}
+            </Alert>
+          )}
           <Box
             display="grid"
             gap="30px"
@@ -234,19 +254,22 @@ const Form = () => {
 
           {/* BUTTONS */}
           <Box>
-            <Button
-              fullWidth
-              type="submit"
-              sx={{
-                m: "2rem 0",
-                p: "1rem",
-                backgroundColor: palette.primary.main,
-                color: palette.background.alt,
-                "&:hover": { color: palette.primary.main },
-              }}
-            >
-              {isLogin ? "LOGIN" : "REGISTER"}
-            </Button>
+            {!loading && (
+              <Button
+                fullWidth
+                type="submit"
+                sx={{
+                  m: "2rem 0",
+                  p: "1rem",
+                  backgroundColor: palette.primary.main,
+                  color: palette.background.alt,
+                  "&:hover": { color: palette.primary.main },
+                }}
+              >
+                {isLogin ? "LOGIN" : "REGISTER"}
+              </Button>
+            )}
+
             <Typography
               onClick={() => {
                 setPageType(isLogin ? "register" : "login");
