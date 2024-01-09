@@ -4,10 +4,10 @@
 
 ### Features not added,yet
 
-- [ ] error handling
-- [ ] notifications
-- [ ] edit user profile
-- [ ] search functionality
+- [x] Login form error handling
+- [x] Signup form error handling
+- [ ] Post form error handling
+- [ ] Update user profile
 
 
 [Link to tutorial by EdRoh](https://youtu.be/K8YELRmUb5o?si=QOocp4hvtX6lVWcE)
