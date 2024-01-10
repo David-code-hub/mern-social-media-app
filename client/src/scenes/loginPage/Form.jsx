@@ -133,14 +133,14 @@ const Form = () => {
               severity={
                 loggedIn.status === 400 || loggedIn.status === 500
                   ? "error"
-                  : "warning"
+                  : "success"
               }
               sx={{ my: "0.5rem" }}
             >
               <AlertTitle>
                 {loggedIn.status === 400 || loggedIn.status === 500
                   ? "Error"
-                  : "Warning"}
+                  : "Success"}
               </AlertTitle>
               {loggedIn.msg}
             </Alert>
