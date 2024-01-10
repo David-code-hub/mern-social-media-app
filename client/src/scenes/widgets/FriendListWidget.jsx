@@ -49,6 +49,16 @@ const FriendListWidget = ({ userId }) => {
             userPicturePath={friend.picturePath}
           />
         ))}
+        {!friends.length && (
+          <Typography
+            color={palette.neutral.dark}
+            variant="h6"
+            fontWeight="300"
+            sx={{ mb: "15.rem" }}
+          >
+            You haven't added any friends yet!
+          </Typography>
+        )}
       </Box>
     </WidgetWrapper>
   );
