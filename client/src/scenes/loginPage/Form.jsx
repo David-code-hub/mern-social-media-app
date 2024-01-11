@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   Box,
   Button,
@@ -93,22 +93,24 @@ const Form = () => {
     });
     setLoggedIn(await loggedInResponse.json());
     setLoading(false);
-    if (loggedIn) {
-      onSubmitProps.resetForm();
-      dispatch(
-        setLogin({
-          user: loggedIn.user,
-          token: loggedIn.token,
-        })
-      );
-      navigate("/home");
-    }
   };
 
   const handleFormSubmit = async (values, onSubmitProps, e) => {
     if (isLogin) await login(values, onSubmitProps);
     if (isRegister) await register(values, onSubmitProps);
   };
+
+  useEffect(() => {
+    if (loggedIn?.token) {
+      navigate("/home");
+      dispatch(
+        setLogin({
+          user: loggedIn.user,
+          token: loggedIn.token,
+        })
+      );
+    }
+  }, [loggedIn]);
 
   return (
     <Formik
