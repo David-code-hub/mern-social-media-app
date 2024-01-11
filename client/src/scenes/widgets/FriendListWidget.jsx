@@ -21,7 +21,6 @@ const FriendListWidget = ({ userId }) => {
       }
     );
     const data = await response.json();
-    console.log(data);
     dispatch(setFriends({ friends: data }));
   };
 
@@ -56,7 +55,7 @@ const FriendListWidget = ({ userId }) => {
             fontWeight="300"
             sx={{ mb: "15.rem" }}
           >
-            You haven't added any friends yet!
+            Friend list is empty...
           </Typography>
         )}
       </Box>
