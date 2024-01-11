@@ -6,6 +6,8 @@
 
 - [x] Login form error handling
 - [x] Signup form error handling
+- [x] Login resubmit bug
+- [ ] Loaders/skeletons on components
 - [ ] Post form error handling
 - [ ] Update user profile
 
