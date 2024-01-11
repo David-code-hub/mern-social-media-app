@@ -93,9 +93,8 @@ const Form = () => {
     });
     setLoggedIn(await loggedInResponse.json());
     setLoading(false);
-    console.log("logged in resp", loggedIn);
     if (loggedIn) {
-      // onSubmitProps.resetForm();
+      onSubmitProps.resetForm();
       dispatch(
         setLogin({
           user: loggedIn.user,
