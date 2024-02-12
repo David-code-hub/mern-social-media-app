@@ -7,9 +7,9 @@
 - [x] Login form error handling
 - [x] Signup form error handling
 - [x] Login resubmit bug
-- [ ] Loaders/skeletons on components
+<!--- [ ] Loaders/skeletons on components
 - [ ] Post form error handling
-- [ ] Update user profile
+- [ ] Update user profile-->
 
 
 [Link to tutorial by EdRoh](https://youtu.be/K8YELRmUb5o?si=QOocp4hvtX6lVWcE)
